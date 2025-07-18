@@ -126,9 +126,14 @@ jobs:
       - name: Snyk Authenticate    
         run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
-      - name: Snyk Code Test
-        run: snyk code test --all-projects
+      #- name: Snyk Code Test
+       # run: snyk code test --all-projects
+        #continue-on-error: true
+      
+      - name: Snyk Test
+        run: snyk test --all-projects
         continue-on-error: true
+      
 
   backend-security:
     needs: backend-test
@@ -154,9 +159,14 @@ jobs:
       - name: Snyk Authenticate    
         run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
-      - name: Snyk Code Test
-        run: snyk code test --all-projects
+     # - name: Snyk Code Test
+      #  run: snyk code test --all-projects
+       # continue-on-error: true
+
+      - name: Snyk Test
+        run: snyk test --all-projects
         continue-on-error: true
+
 
   frontend-image:
     needs: frontend-security
